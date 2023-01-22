@@ -11,6 +11,3 @@ client = tweepy.Client(
     access_token_secret=my_access_token_secret
 )
 
-
-def create_tweet(tweet):
-    client.create_tweet(text=tweet)
