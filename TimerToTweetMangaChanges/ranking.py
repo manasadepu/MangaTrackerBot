@@ -1,6 +1,5 @@
-import requests
 import pprint as p
-
+import requests
 
 # Gather top 60 Manga from Anilist website
 def fetch_media_list():
@@ -45,6 +44,9 @@ def fetch_media_list():
     data = response.json()
 
     return data
+
+data = fetch_media_list()
+print(data)
 
 def cleandata_foruse(data_json):
     mangalist = data_json["data"]["Page"]["media"]
