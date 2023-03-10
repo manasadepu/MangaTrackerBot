@@ -9,26 +9,26 @@ def main(mytimer: func.TimerRequest, writelist, readlist) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
 
-    manaslist = ranking.fetch_media_list()
+    # manaslist = ranking.fetch_media_list()
     
-    manaslist = json.dumps(manaslist)
-    datalist = json.dumps({
-        "ID": 1,
-        "string": manaslist
-    })
+    # manaslist = json.dumps(manaslist)
+    # datalist = json.dumps({
+    #     "ID": 1,
+    #     "string": manaslist
+    # })
 
-    writelist.set(datalist)
+    # writelist.set(datalist)
 
     retrieved_list = json.loads(readlist)
 
-    # item = json.loads(pastlist[0]['string'])
+    retrieved_list = json.loads(retrieved_list[0]['string'])
     # print(type(item))
     # print(item)
     # print(item['data']['Page']['pageInfo']['total'])
 
     pastlist = ranking.cleandata_foruse(retrieved_list)
     new_list = ranking.fetch_media_list()
-    new_list = ranking.cleandata_foruse()
+    new_list = ranking.cleandata_foruse(new_list)
     media_changes = ranking.get_media_changes_list(pastlist, new_list)
     tweet_list = ranking.prepare_tweet_text_list(media_changes)
 

@@ -5,7 +5,21 @@
       "name": "mytimer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 */5 * * * *"
+      "schedule": "1 1 12 * * *"
+    },
+    {
+      "name": "writelist",
+      "type": "sql",
+      "direction": "out",
+      "commandText": "dbo.updatedmedialist",
+      "connectionStringSetting": "SqlConnectionString"
+    },
+    {
+      "name": "readlist",
+      "type": "sql",
+      "direction": "in",
+      "commandText": "select * from dbo.updatedmedialist",
+      "connectionStringSetting": "SqlConnectionString"
     }
   ]
 }

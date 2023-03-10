@@ -35,23 +35,20 @@ def fetch_media_list():
   }
 }
     '''
-
-    variables = {"page": 1, "perPage": 20}
+    #Changed perpage to 60 from 20.
+    variables = {"page": 1, "perPage": 50}
 
     url = 'https://graphql.anilist.co'
 
     response = requests.post(url, json={'query': query, 'variables': variables})
 
     data = response.json()
-    mangalist = data["data"]["Page"]["media"]
 
-    for i in range(1, 3):
-        variables = {"page": 1 + i, "perPage": 20}
-        response = requests.post(url, json={'query': query, 'variables': variables})
-        data = response.json()
-        mangalist.extend(data["data"]["Page"]["media"])
+    return data
+
+def cleandata_foruse(data_json):
+    mangalist = data_json["data"]["Page"]["media"]
     return mangalist
-
 
 # Gather the Mangas that have changed rank
 def get_media_changes_list(past_list, current_list):
