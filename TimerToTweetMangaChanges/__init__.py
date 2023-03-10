@@ -40,8 +40,7 @@ def main(mytimer: func.TimerRequest, writelist, readlist) -> None:
     writelist.set(datalist)
 
     for tweet in tweet_list:
-        datetimetweet = f"\nThis is generated at {datetime.datetime.now()}\n" + tweet
-        mt.client.create_tweet(text=datetimetweet)
+        mt.client.create_tweet(text=tweet)
 
     if mytimer.past_due:
         logging.info('The timer is past due!')
