@@ -36,11 +36,8 @@ def main(mytimer: func.TimerRequest, writelist, readlist) -> None:
     datalist = json.dumps({
         "ID": 1,
         "string": new_list
-     })
+    })
     writelist.set(datalist)
-
-
-
 
     for tweet in tweet_list:
         datetimetweet = f"\nThis is generated at {datetime.datetime.now()}\n" + tweet
