@@ -28,9 +28,19 @@ def main(mytimer: func.TimerRequest, writelist, readlist) -> None:
 
     pastlist = ranking.cleandata_foruse(retrieved_list)
     new_list = ranking.fetch_media_list()
-    new_list = ranking.cleandata_foruse(new_list)
-    media_changes = ranking.get_media_changes_list(pastlist, new_list)
+    cleaned_new_list = ranking.cleandata_foruse(new_list)
+    media_changes = ranking.get_media_changes_list(pastlist, cleaned_new_list)
     tweet_list = ranking.prepare_tweet_text_list(media_changes)
+
+    new_list = json.dumps(new_list)
+    datalist = json.dumps({
+        "ID": 1,
+        "string": new_list
+     })
+    writelist.set(datalist)
+
+
+
 
     for tweet in tweet_list:
         datetimetweet = f"\nThis is generated at {datetime.datetime.now()}\n" + tweet
