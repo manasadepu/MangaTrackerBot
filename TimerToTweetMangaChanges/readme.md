@@ -1,3 +1,3 @@
 # TimerTrigger - Python
 
-Function executes daily at 12:01 PM
+Function designed to execute daily at 12:01 PM
