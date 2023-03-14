@@ -45,8 +45,6 @@ def fetch_media_list():
 
     return data
 
-data = fetch_media_list()
-print(data)
 
 def cleandata_foruse(data_json):
     mangalist = data_json["data"]["Page"]["media"]

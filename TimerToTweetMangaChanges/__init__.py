@@ -19,17 +19,14 @@ def main(mytimer: func.TimerRequest, writelist, readlist) -> None:
 
     # writelist.set(datalist)
 
-    retrieved_list = json.loads(readlist)
+    retrieved_list  = json.loads(readlist)
+    retrieved_list = retrieved_list[0]['string']
+    past_list = json.loads(retrieved_list)
 
-    retrieved_list = json.loads(retrieved_list[0]['string'])
-    # print(type(item))
-    # print(item)
-    # print(item['data']['Page']['pageInfo']['total'])
-
-    pastlist = ranking.cleandata_foruse(retrieved_list)
+    cleaned_past_list = ranking.cleandata_foruse(past_list)
     new_list = ranking.fetch_media_list()
     cleaned_new_list = ranking.cleandata_foruse(new_list)
-    media_changes = ranking.get_media_changes_list(pastlist, cleaned_new_list)
+    media_changes = ranking.get_media_changes_list(cleaned_past_list, cleaned_new_list)
     tweet_list = ranking.prepare_tweet_text_list(media_changes)
 
     new_list = json.dumps(new_list)
@@ -40,7 +37,8 @@ def main(mytimer: func.TimerRequest, writelist, readlist) -> None:
     writelist.set(datalist)
 
     for tweet in tweet_list:
-        mt.client.create_tweet(text=tweet)
+        datetimetweet = tweet + "\n" + "This was created at" + str(datetime.datetime.now().strftime("%H:%M:%S"))
+        mt.client.create_tweet(text=datetimetweet)
 
     if mytimer.past_due:
         logging.info('The timer is past due!')

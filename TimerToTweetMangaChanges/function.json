@@ -18,7 +18,7 @@
       "name": "readlist",
       "type": "sql",
       "direction": "in",
-      "commandText": "select * from dbo.updatedmedialist",
+      "commandText": "select string from dbo.updatedmedialist where ID = 1",
       "connectionStringSetting": "SqlConnectionString"
     }
   ]
